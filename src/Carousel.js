@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import CarouselContainer from './CarouselContainer'
 import Wrapper from './Wrapper'
 import CarouselSlot from './CarouselSlot'
+import './Carousel.css'
 
 class Carousel extends Component {
     constructor(props) {
@@ -49,7 +50,7 @@ class Carousel extends Component {
 
         setTimeout(() => {
             this.setState({sliding: false})
-        }, 20);
+        }, 5);
     }
 
     getOnClick(index) {
@@ -63,7 +64,7 @@ class Carousel extends Component {
     render() {
         const {children} = this.props;
         return (
-            <div>
+            <div className='flex-container'>
                 <Wrapper>
                     <CarouselContainer
                         sliding={this.state.sliding}
