@@ -9,9 +9,9 @@ const CarouselContainer = styled.div `
     : 'transform 1s ease'};
     transform: ${ (props) => {
         if (!props.sliding) 
-            return 'translateX(calc(-50% - 20px))'
+            return 'translateX(calc(-72vw - 20px))'
         if (props.direction === 'prev') 
-            return 'translateX(calc(2* (-50% - 20px)))'
+            return 'translateX(calc(2* (-72vw - 20px)))'
 
         return 'translateX(0%)'}};
 `
