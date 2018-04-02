@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 const Wrapper = styled.div `
-  width: 100%;
+  max-width: 1455px;
   overflow: hidden;
 `
 export default Wrapper;
