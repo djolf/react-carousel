@@ -6,3 +6,9 @@
 img {
     width:80vw;
 }
+
+@media (max-width: 768px) {
+    img {
+        width:100vw;
+    }
+}

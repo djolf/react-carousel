@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Swipeable from 'react-swipeable';
+import {throttle} from 'lodash';
 
 import CarouselContainer from './CarouselContainer'
 import Wrapper from './Wrapper'
@@ -12,7 +14,34 @@ class Carousel extends Component {
             position: 0,
             sliding: false
         };
+        this.intervalFunc = this
+            .intervalFunc
+            .bind(this);
+        this.timeout = this
+            .timeout
+            .bind(this);
     }
+
+    componentDidMount() {
+        this.timeout();
+    }
+
+    intervalFunc() {
+        this.nextSlide();
+        this.timeout();
+    }
+
+    timeout() {
+        setTimeout(this.intervalFunc, 6000);
+    }
+
+    handleSwipe = throttle((isNext) => {
+        if (isNext) {
+            this.nextSlide();
+        } else {
+            this.prevSlide();
+        }
+    }, 500, {trailing: false});
 
     getOrder(itemIndex) {
         const {position} = this.state;
@@ -64,7 +93,9 @@ class Carousel extends Component {
     render() {
         const {children} = this.props;
         return (
-            <div className='flex-container'>
+            <Swipeable
+                onSwipingLeft={() => this.handleSwipe(true)}
+                onSwipingRight={() => this.handleSwipe()}>
                 <Wrapper>
                     <CarouselContainer
                         sliding={this.state.sliding}
@@ -80,7 +111,7 @@ class Carousel extends Component {
                         ))}
                     </CarouselContainer>
                 </Wrapper>
-            </div>
+            </Swipeable>
         );
     }
 }
